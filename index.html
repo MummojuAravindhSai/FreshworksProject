@@ -1,0 +1,65 @@
+<html>
+
+<head>
+  <style media="screen">
+    input,
+    button {
+      padding: 7px;
+      height: 40px;
+    }
+
+    fieldset {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2 id="title">local storage-Node.js using javascript</h2>
+  <fieldset>
+    <legend>insert data</legend>
+    <input id="inpKey" type="text" placeholder="enter key">
+    <input id="inpValue" type="text" placeholder="enter value">
+    <button type="button" id="btnInsert">Insert data</button>
+    <button type="button" id="btnRead">Read data</button>
+    <button type="button" id="btnDelete">Delete data</button>
+  </fieldset>
+  <fieldset>
+    <legend>local storage</legned>
+      <div id="isOutput"></div>
+  </fieldset>
+</body>
+<script type="text/javascript">
+  const inpKey = document.getElementById("inpKey");
+  const inpValue = document.getElementById("inpValue");
+  const btnInsert = document.getElementById("btnInsert");
+  const btnRead = document.getElementById("btnRead");
+  const btnDelete = document.getElementById("btnDelete");
+  const isOutput = document.getElementById("isOutput");
+  btnInsert.onclick = function () {
+    const key = inpKey.value;
+    const value = inpValue.value;
+    if (key && value) {
+      localStorage.setItem(key, value);
+      location.reload();
+    }
+    // var proj = { key: value }
+    var json = JSON.stringify(localStorage.getItem(key));
+    const FileSystem = require("fs");
+    FileSystem.writeFile('file.json', JSON.stringify(proj), (err) => {
+      if (e) throw e;
+    });
+  };
+  btnRead.onclick = function () {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      const value = localStorage.getItem(key);
+      isOutput.innerHTML += `${key}:${value}<br/>`;
+    }
+  }
+  btnDelete.onclick = function () {
+    localStorage.removeItem("name")
+  }
+</script>
+
+</html>
