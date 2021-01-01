@@ -43,7 +43,6 @@
       localStorage.setItem(key, value);
       location.reload();
     }
-    // var proj = { key: value }
     var json = JSON.stringify(localStorage.getItem(key));
     const FileSystem = require("fs");
     FileSystem.writeFile('file.json', JSON.stringify(proj), (err) => {
